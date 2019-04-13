@@ -23,9 +23,9 @@ julia> Ind_pref = []
 0-element Array{Any,1}
 
 julia> for i in 1:20
-                push!(Ind_pref, 
-                sparse(collect(1:10), 
-                    collect(1:10), 
+                push!(Ind_pref,
+                sparse(collect(1:10),
+                    collect(1:10),
                     rand(0:100, 10))
                 )
        end
@@ -114,7 +114,7 @@ function demand!(price::Vector{Float64}, s::Student; p_neigh_parm::Int64=0)
 	N = size(s.preferences)[1]  # number of choices
 
 	# Maximization problem
-	m = Model(solver=CbcSolver())
+	m = Model(with_optimizer(Ipopt.Optimizer))
 
 	@variable(m, x[1:N], Bin)
 
@@ -141,7 +141,7 @@ function demand!(price::Vector{Float64}, s::Student; p_neigh_parm::Int64=0)
 
 
 	# TODO
-	# not working from here on: need to change how those constraints are called now. 
+	# not working from here on: need to change how those constraints are called now.
 	# they are members of s.constraints now!
 
 	#TC semester constraint
@@ -178,9 +178,9 @@ function demand!(price::Vector{Float64}, s::Student; p_neigh_parm::Int64=0)
 	dem = getvalue(x)
 
 	# store on the student
-	if status == :Optimal 
+	if status == :Optimal
 		s.allocation = getvalue(x)
-	else 
+	else
 		warn("MIP problem not solved. status = $status")
 	end
 end

@@ -9,7 +9,10 @@ using DataStructures, Distributions, DataFramesMeta
 # includes
 include("student.jl")
 include("demand.jl")
-
+include("PseudoDemand.jl")
+include("PseudoClearingError.jl")
+include("PseudoNeighbor.jl")
+include("loops.jl")
 # exports
 
 

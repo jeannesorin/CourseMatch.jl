@@ -1,18 +1,23 @@
 #This file provides a pseudocode for algorithm one that provides the architecture for the complete algorithm. Some of these objects can change.
 
-include("PseudoDemand.jl")
-include("PseudoClearingError.jl")
-include("PseudoNeighbor.jl")
-include("loops.jl")
 
 function coursematch(M, k, βmax, besterror, t, Np)
-    ptild = Array{Int}(M) #new search price
-    pstar = Array[] #price that gives best error
-    searcherror = Array[] #best error in a searchstart
-    DoubleN = Array[] #neighbors of the search
-    foundnextstep = Array{Bool}(1) #boolean. true if a new search price has been found (one that does not generate the same demand as one that is in the tabu list)
-    dem = zeros(M) #the demand for courses at search price
-    currenterror = Array[] #error in the current search.
+
+    ### Initialization
+    # New search price
+    ptild = Array{Int}(M)
+    # Price that gives the best error
+    pstar = Array[]
+    # Best error in a searchstart
+    searcherror = Array[]
+    # Neighbors of the search
+    DoubleN = Array[]
+    # boolean. true if a new search price has been found (one that does not generate the same demand as one that is in the tabu list)
+    foundnextstep = Array{Bool}(1) 
+    # the demand for courses at search price
+    dem = zeros(M)
+    # Error in the current search.
+    currenterror = Array[]
     τ = Array[]
     starttime = Dates.Time(now())
     while (Dates.Time(now()) - starttime).value < t *1000000000
@@ -47,10 +52,10 @@ function coursematch(M, k, βmax, besterror, t, Np)
     return pstar
 end
 
-M = 5 #Number of courses offered
-k = 3 #Number of courses students take
-βmax = 20 #Maximum budget
-t = 1 #time in seconds
-besterror = 100 #for now
-Np = Array[[0,0,0,0,0],[9,40,5,2,0], [1,1,1,1,1], [1,2,3,0,0], [9,40,5,2,0], [32,40,100,1,2], [10,20,30,3,0]]
-pstar = coursematch(M, k, βmax, besterror, t, Np)
+#M = 5 #Number of courses offered
+#k = 3 #Number of courses students take
+#βmax = 20 #Maximum budget
+#t = 1 #time in seconds
+#besterror = 100 #for now
+#Np = Array[[0,0,0,0,0],[9,40,5,2,0], [1,1,1,1,1], [1,2,3,0,0], [9,40,5,2,0], [32,40,100,1,2], [10,20,30,3,0]]
+#pstar = coursematch(M, k, βmax, besterror, t, Np)
