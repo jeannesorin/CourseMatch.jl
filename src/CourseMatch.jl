@@ -4,6 +4,7 @@ module CourseMatch
 
 using JuMP, Cbc, CSV, DataFrames, SparseArrays, Dates
 using DataStructures, Distributions, DataFramesMeta
+using JuMP, Cbc
 
 
 # includes
