@@ -4,11 +4,13 @@ module CourseMatch
 
 using JuMP, Cbc, CSV, DataFrames, SparseArrays, Dates
 using DataStructures, Distributions, DataFramesMeta
+using JuMP, Cbc
 
 
 # includes
 include("student.jl")
 include("demand.jl")
+
 include("clearing.jl")
 
 # exports
