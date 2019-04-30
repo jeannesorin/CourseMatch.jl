@@ -10,10 +10,9 @@ using JuMP, Cbc
 # includes
 include("student.jl")
 include("demand.jl")
-include("PseudoDemand.jl")
-include("PseudoClearingError.jl")
-include("PseudoNeighbor.jl")
-include("loops.jl")
+
+include("clearing.jl")
+
 # exports
 
 
